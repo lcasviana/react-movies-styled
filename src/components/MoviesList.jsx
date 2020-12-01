@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MoviesListHeader } from './MoviesListHeader';
-import { MoviesService } from '../services/MoviesService';
-import { moviesPage } from '../core/actions/MoviesActions';
 import { Loading } from './Icons';
 import { MoviesListContainer, MoviesListCard } from './styles/MoviesStyled';
+import usePages from '../services/hooks/usePages';
 
 export const MoviesList = () => {
-  const dispatch = useDispatch();
-  const moviesStore = useSelector(s => s.movies);
-  const { page, pages } = moviesStore;
-
-  useEffect(() => {
-    if (!pages[page])
-      MoviesService.getPopularMovies(page)
-        .then((res) => dispatch(moviesPage(page, res?.data?.results)))
-        .catch((err) => console.error(err));
-  }, [dispatch, page, pages]);
+  const { page, pages } = useSelector(s => s.movies);
+  usePages({ page, pages });
 
   return (
     !pages[page]

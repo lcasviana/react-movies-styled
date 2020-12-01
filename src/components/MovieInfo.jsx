@@ -1,23 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MoviesService } from '../services/MoviesService';
 import { ArrowLeft, Loading, BookmarkInsert } from './Icons';
-import { moviesList, insertPlaylist } from '../core/actions/MoviesActions';
+import { insertPlaylist } from '../core/actions/MoviesActions';
 import { MoviesHeaderContainer, MoviesInfoCard } from './styles/MoviesStyled';
+import useMovies from '../services/hooks/useMovies';
 
 export const MovieInfo = (props) => {
   const dispatch = useDispatch();
-  const moviesStore = useSelector(s => s.movies);
-  const { movies } = moviesStore;
+  const { movies } = useSelector(s => s.movies);
   const id = props?.match?.params?.id;
-
-  useEffect(() => {
-    if (!movies[id])
-      MoviesService.getMovieById(id)
-        .then((res) => dispatch(moviesList(id, res?.data)))
-        .catch((err) => console.error(err));
-  }, []);
+  useMovies({ id });
 
   return (
     !movies[id]

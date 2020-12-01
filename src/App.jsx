@@ -13,8 +13,7 @@ const App = () => (
         <Route exact path="/movies" render={(props) => <MoviesList {...props} />} />
         <Route exact path="/movies/:id" render={(props) => <MovieInfo {...props} />} />
         <Route exact path="/playlist" render={(props) => <Playlist {...props} />} />
-        <Route exact path="/" render={() => <Redirect to="/movies" />} />
-        <Route render={() => <> 404 </>} />
+        <Route exact path="**" render={() => <Redirect to="/movies" />} />
       </Switch>
     </BrowserRouter>
   </>
