@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removePlaylist } from '../core/actions/MoviesActions';
 import { BookmarkRemove } from './Icons';
+import { MoviesListContainer, MoviesListCard } from './styles/MoviesStyled';
 
 const Playlist = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Playlist = () => {
     !playlist.length
       ? <h4 className="pa4 tc i"> Empty playlist </h4>
       : <>
-        <main className="pa3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gridGap: '1rem', alignItems: 'stretch' }}>
+        <MoviesListContainer>
           {playlist.map((movie, index) => (
             <article key={index} className="card h-100 flex flex-column">
               <Link to={`/movies/${movie.id}`} className="pointer" style={{ flexGrow: '1' }}>
@@ -27,7 +28,7 @@ const Playlist = () => {
               </button>
             </article>
           ))}
-        </main>
+        </MoviesListContainer>
       </>
   );
 };

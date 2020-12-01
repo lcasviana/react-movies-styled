@@ -5,6 +5,7 @@ import { MoviesListHeader } from './MoviesListHeader';
 import { MoviesService } from '../services/MoviesService';
 import { moviesPage } from '../core/actions/MoviesActions';
 import { Loading } from './Icons';
+import { MoviesListContainer, MoviesListCard } from './styles/MoviesStyled';
 
 export const MoviesList = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,18 @@ export const MoviesList = () => {
       ? <Loading />
       : <>
         <MoviesListHeader page={page} />
-        <main className="pa3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gridGap: '1rem', alignItems: 'stretch' }}>
+        <MoviesListContainer>
           {pages[page].map((movie, index) => (
             <Link key={index} to={`/movies/${movie.id}`}>
-              <article className="pointer card h-100">
+              <MoviesListCard className="card">
                 <img src={`http://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
                 <div className="card-body">
                   <h5 className="card-title"> {movie.title} </h5>
                 </div>
-              </article>
+              </MoviesListCard>
             </Link>
           ))}
-        </main>
+        </MoviesListContainer>
       </>
   );
 }

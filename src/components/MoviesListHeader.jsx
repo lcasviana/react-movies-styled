@@ -2,13 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ArrowLeft, ArrowRight } from './Icons';
 import { nextPage, prevPage } from '../core/actions/MoviesActions';
+import { MoviesHeaderContainer } from './styles/MoviesStyled';
 
 export const MoviesListHeader = ({ page }) => {
   const dispatch = useDispatch();
 
   return (
     <>
-      <header className="pa3 flex justify-center bg-white" style={{ position: 'sticky', top: '56px', zIndex: '8888' }}>
+      <MoviesHeaderContainer>
         <button className="btn btn-outline-dark" onClick={() => dispatch(nextPage())}>
           <ArrowLeft />
         </button>
@@ -16,7 +17,7 @@ export const MoviesListHeader = ({ page }) => {
         <button className="btn btn-outline-dark" onClick={() => dispatch(prevPage())}>
           <ArrowRight />
         </button>
-      </header>
+      </MoviesHeaderContainer>
     </>
   );
 };

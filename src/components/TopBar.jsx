@@ -1,23 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { TopBarContainer, TopBarLogo, TopBarLink } from './styles/MoviesStyled';
 
 const TopBar = () => {
   return (
     <>
-      <nav className="navbar navbar-light bg-light flex justify-start items-baseline"
-        style={{ position: 'sticky', top: '0', zIndex: '9999' }}>
-        <span className="navbar-brand mb-0 b"> React Movies </span>
-        <Link to="/movies">
-          <span className="black pa2">
-            All Movies
-          </span>
+      <TopBarContainer className="navbar">
+        <TopBarLogo> React Movies </TopBarLogo>
+        <Link to="/movies" style={{ textDecoration: 'none' }}>
+          <TopBarLink> All Movies </TopBarLink>
         </Link>
-        <Link to="/playlist">
-          <span className="black pa2">
-            Playlist
-          </span>
+        <Link to="/playlist" style={{ textDecoration: 'none' }}>
+          <TopBarLink> Playlist </TopBarLink>
         </Link>
-      </nav>
+      </TopBarContainer>
     </>
   );
 };
