@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removePlaylist } from '../core/actions/MoviesActions';
 import { BookmarkRemove } from './Icons';
-import { MoviesListContainer, MoviesListCard } from './styles/MoviesStyled';
+import { MoviesListContainer } from './styles/MoviesStyled';
 
 const Playlist = () => {
   const dispatch = useDispatch();
